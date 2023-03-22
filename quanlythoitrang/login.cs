@@ -12,6 +12,7 @@ namespace quanlythoitrang
         public login()
         {
             InitializeComponent();
+
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -22,7 +23,7 @@ namespace quanlythoitrang
                 conn.Open();
                 string tk = txttk.Text;
                 string mk = txtmk.Text;
-                string mysql = "select * from login where taikhoan='"+tk+"' and matkhau='"+mk+"'";
+                string mysql = "select * from login where taikhoan='" + tk + "' and matkhau='" + mk + "'";
                 MySqlCommand cmd = new MySqlCommand(mysql, conn);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -62,5 +63,7 @@ namespace quanlythoitrang
         {
 
         }
+
+        
     }
 }

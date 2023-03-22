@@ -116,6 +116,7 @@
             txtmk.Size = new Size(248, 34);
             txtmk.TabIndex = 8;
             txtmk.UseSystemPasswordChar = true;
+            txtmk.PasswordChar = '*';
             // 
             // login
             // 
