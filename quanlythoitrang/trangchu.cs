@@ -22,5 +22,11 @@ namespace quanlythoitrang
             kho kho = new kho();
             kho.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dskh d = new dskh();
+            d.Show();
+        }
     }
 }
