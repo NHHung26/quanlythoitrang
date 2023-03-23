@@ -86,6 +86,7 @@
             button4.TabIndex = 3;
             button4.Text = "Quản Lý Nhân Viên";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button5
             // 

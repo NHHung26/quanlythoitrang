@@ -28,5 +28,11 @@ namespace quanlythoitrang
             dskh d = new dskh();
             d.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            qlnv hung = new qlnv();
+            hung.Show();
+        }
     }
 }
