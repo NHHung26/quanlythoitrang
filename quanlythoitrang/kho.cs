@@ -12,9 +12,18 @@ namespace quanlythoitrang
 {
     public partial class kho : Form
     {
-        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002";
-        MySqlCommand cmd;
-        MySqlDataAdapter adt;
+        public void ketnoi(string truyvan)
+        {
+            MySqlCommand cmd;
+            MySqlDataAdapter adt;
+            MySqlConnection con = new MySqlConnection("server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002");
+            con.Open();
+            cmd = new MySqlCommand(truyvan, con);
+            DataTable dt = new DataTable();
+            adt.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Close();
+        }
 
         public kho()
         {
@@ -27,14 +36,7 @@ namespace quanlythoitrang
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MySqlConnection con = new MySqlConnection(connectionString);
-            con.Open();
-            cmd = new MySqlCommand("select * from sanpham where tensanpham like'%"+textBox1.Text+"%'", con);
-            adt = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adt.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Clone();
+            ketnoi("select * from sanpham where tensanpham like'%" + textBox1.Text + "%'");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -44,14 +46,7 @@ namespace quanlythoitrang
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MySqlConnection(connectionString);
-            con.Open();
-            cmd = new MySqlCommand("select * from sanpham", con);
-            adt = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adt.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Clone();
+            ketnoi("select * from sanpham");
         }
 
         private void button3_Click(object sender, EventArgs e)

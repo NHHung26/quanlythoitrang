@@ -34,5 +34,7 @@ namespace quanlythoitrang
             qlnv hung = new qlnv();
             hung.Show();
         }
+
+        
     }
 }
