@@ -30,7 +30,7 @@ namespace quanlythoitrang
                 if (dr.Read() == true)
                 {
                     trangchu tc = new trangchu();
-                    tc.ShowDialog();
+                    tc.Show();
                 }
                 else
                 {

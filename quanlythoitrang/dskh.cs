@@ -16,7 +16,7 @@ namespace quanlythoitrang
         public void ketnoi(string truyvan)
         {
             MySqlCommand cmd;
-            MySqlDataAdapter adt;
+            MySqlDataAdapter adt = new MySqlDataAdapter();
             MySqlConnection con = new MySqlConnection("server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002");
             con.Open();
             cmd = new MySqlCommand(truyvan, con);
