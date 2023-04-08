@@ -35,6 +35,10 @@ namespace quanlythoitrang
             hung.Show();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            qlbh z = new qlbh();
+            z.Show();
+        }
     }
 }
