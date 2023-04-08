@@ -13,18 +13,9 @@ namespace quanlythoitrang
 {
     public partial class dskh : Form
     {
-        public void ketnoi(string truyvan)
-        {
-            MySqlCommand cmd;
-            MySqlDataAdapter adt = new MySqlDataAdapter();
-            MySqlConnection con = new MySqlConnection("server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002");
-            con.Open();
-            cmd = new MySqlCommand(truyvan, con);
-            DataTable dt = new DataTable();
-            adt.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Close();
-        }
+        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002";
+        MySqlCommand cmd;
+        MySqlDataAdapter adt;
         public dskh()
         {
             InitializeComponent();
@@ -32,12 +23,28 @@ namespace quanlythoitrang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ketnoi("select * from khachhang where Ten like '%" + textBox1.Text + "%'");
+            
+            MySqlConnection con = new MySqlConnection(connectionString);
+            con.Open();
+            cmd = new MySqlCommand("select * from khachhang where Ten like '%" + textBox1.Text + "%'", con);
+            adt = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adt.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Clone();
         }
 
         private void dskh_Load(object sender, EventArgs e)
         {
-            ketnoi("select * from khachhang");
+            
+            MySqlConnection con = new MySqlConnection(connectionString);
+            con.Open();
+            cmd = new MySqlCommand("select * from khachhang", con);
+            adt = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adt.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Clone();
         }
     }
 }
