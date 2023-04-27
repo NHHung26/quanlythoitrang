@@ -7,14 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 namespace quanlythoitrang
 {
     public partial class kho : Form
     {
-        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002";
-        MySqlCommand cmd;
-        MySqlDataAdapter adt;
+        string connectionString = @"Data Source=LAPTOP-IJ9867A0\SQL1;Initial Catalog=qlthoitrang;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public kho()
         {
@@ -27,14 +25,15 @@ namespace quanlythoitrang
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MySqlConnection con = new MySqlConnection(connectionString);
+            SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            cmd = new MySqlCommand("select * from sanpham where tensanpham like'%" + textBox1.Text + "%'", con);
-            adt = new MySqlDataAdapter(cmd);
+            string sql = "select* from sanpham where tensanpham like'%" + textBox1.Text + "%'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter adt = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adt.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.Clone();
+            con.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -44,15 +43,16 @@ namespace quanlythoitrang
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            MySqlConnection con = new MySqlConnection(connectionString);
+
+            SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            cmd = new MySqlCommand("select * from sanpham", con);
-            adt = new MySqlDataAdapter(cmd);
+            string sql = "select* from sanpham";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter adt = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adt.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.Clone();
+            con.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)

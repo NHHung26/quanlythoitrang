@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.SqlClient;
 namespace quanlythoitrang
 {
     public partial class dskh : Form
     {
-        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002";
-        MySqlCommand cmd;
-        MySqlDataAdapter adt;
+        string connectionString = @"Data Source=LAPTOP-IJ9867A0\SQL1;Initial Catalog=qlthoitrang;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        SqlCommand cmd;
+        SqlDataAdapter adt;
         public dskh()
         {
             InitializeComponent();
@@ -24,27 +24,27 @@ namespace quanlythoitrang
         private void button1_Click(object sender, EventArgs e)
         {
             
-            MySqlConnection con = new MySqlConnection(connectionString);
+            SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            cmd = new MySqlCommand("select * from khachhang where Ten like '%" + textBox1.Text + "%'", con);
-            adt = new MySqlDataAdapter(cmd);
+            cmd = new SqlCommand("select * from khachhang where Ten like '%" + textBox1.Text + "%'", con);
+            adt = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adt.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.Clone();
+            con.Close();
         }
 
         private void dskh_Load(object sender, EventArgs e)
         {
             
-            MySqlConnection con = new MySqlConnection(connectionString);
+            SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            cmd = new MySqlCommand("select * from khachhang", con);
-            adt = new MySqlDataAdapter(cmd);
+            cmd = new SqlCommand("select * from khachhang", con);
+            adt = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adt.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.Clone();
+            con.Close();
         }
     }
 }

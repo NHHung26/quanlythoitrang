@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +14,9 @@ namespace quanlythoitrang
 {
     public partial class themsp : Form
     {
-        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002";
-        MySqlCommand cmd;
-        MySqlDataAdapter adt;
+        string connectionString = @"Data Source=LAPTOP-IJ9867A0\SQL1;Initial Catalog=qlthoitrang;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        SqlCommand cmd;
+         SqlDataAdapter adt;
         public themsp()
         {
             InitializeComponent();
@@ -24,17 +24,18 @@ namespace quanlythoitrang
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MySqlConnection con = new MySqlConnection(connectionString);
+            SqlConnection con = new SqlConnection(connectionString);
             try
             {
                 con.Open();
-                string mysqlInsert = "INSERT INTO sanpham (TenSanPham, Size, MauSac, SoLuong, GiaTien)  VALUES (@TenSanPham, @Size, @MauSac, @SoLuong, @GiaTien)";
-                cmd = new MySqlCommand(mysqlInsert, con);
-                cmd.Parameters.AddWithValue("@TenSanPham", textBox1.Text);
-                cmd.Parameters.AddWithValue("@Size", textBox2.Text);
-                cmd.Parameters.AddWithValue("@MauSac", textBox3.Text);
-                cmd.Parameters.AddWithValue("@Soluong", textBox4.Text);
-                cmd.Parameters.AddWithValue("@GiaTien", textBox5.Text);
+                string sql = "INSERT INTO sanpham (masanpham, tensanpham, sz, soluong, mausac, gia)  VALUES (@masanpham, @tensanpham, @sz, @soluong,@mausac, @gia)";
+                cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@masanpham", textBox1.Text);
+                cmd.Parameters.AddWithValue("@tensanpham", textBox2.Text);
+                cmd.Parameters.AddWithValue("@sz", textBox3.Text);
+                cmd.Parameters.AddWithValue("@soluong", textBox4.Text);
+                cmd.Parameters.AddWithValue("@mausac", textBox5.Text);
+                cmd.Parameters.AddWithValue("@gia", textBox6.Text);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {

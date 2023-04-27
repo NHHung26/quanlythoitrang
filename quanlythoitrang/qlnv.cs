@@ -13,7 +13,7 @@ namespace quanlythoitrang
 {
     public partial class qlnv : Form
     {
-        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=huyhung26082002";
+        string connectionString = "server=localhost;port=3306;database=fashion;uid=root;password=duc2002latao@";
         MySqlCommand cmd;
         MySqlDataAdapter adt;
         public qlnv()

@@ -1,48 +1,60 @@
-﻿using MySql.Data.MySqlClient;
-using System.Data;
+﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace quanlythoitrang
 {
     public partial class login : Form
     {
-        string constr;
-        MySqlConnection conn;
-        MySqlCommand cmd;
-        MySqlDataAdapter adapter;
         public login()
         {
             InitializeComponent();
             
         }
-
+        public static string diachi = @"Data Source=LAPTOP-IJ9867A0\SQL1;Initial Catalog=qlthoitrang;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static SqlConnection ketnoi()
+        {
+            return new SqlConnection(diachi);
+        }
         private void btn_login_Click(object sender, EventArgs e)
         {
-            MySqlConnection conn = new MySqlConnection("server=localhost;port=3306;user=root;password=huyhung26082002;database=fashion;");
             try
             {
-                conn.Open();
-                string tk = txttk.Text;
-                string mk = txtmk.Text;
-                string mysql = "select * from login where taikhoan='"+tk+"' and matkhau='"+mk+"'";
-                MySqlCommand cmd = new MySqlCommand(mysql, conn);
-                MySqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read() == true)
+                using (SqlConnection conn = ketnoi())
                 {
-                    trangchu tc = new trangchu();
-                    tc.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Đăng nhập thất bại!!",
-                       "Thông báo", MessageBoxButtons.OK,
-                       MessageBoxIcon.Error);
+                    conn.Open();
+                    string tk = txttk.Text;
+                    string mk = txtmk.Text;
+                    string sql = "select count(*) from login where taikhoan=@taikhoan and matkhau=@matkhau";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@taikhoan", tk);
+                        cmd.Parameters.AddWithValue("@matkhau", mk);
+                        try
+                        {
+                            int count = (int)cmd.ExecuteScalar();
+                            // Nếu số lượng bản ghi trả về lớn hơn 0, tài khoản và mật khẩu đúng
+                            if (count > 0)
+                            {
+                                trangchu tc = new trangchu();
+                                tc.Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi khi thực hiện truy vấn: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối");
+                MessageBox.Show("Lỗi kết nối: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
