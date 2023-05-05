@@ -35,7 +35,6 @@ namespace quanlythoitrang
                 cmd.Parameters.AddWithValue("@sz", textBox3.Text);
                 cmd.Parameters.AddWithValue("@mausac", textBox4.Text);
                 cmd.Parameters.AddWithValue("@sl", textBox5.Text);
-                cmd.Parameters.AddWithValue("@gia", textBox6.Text);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
