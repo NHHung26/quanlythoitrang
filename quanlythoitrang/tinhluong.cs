@@ -26,7 +26,7 @@ namespace quanlythoitrang
         {
             MySqlConnection con = new MySqlConnection(connectionString);
             con.Open();
-            cmd = new MySqlCommand("SELECT Ten, MucLuong, GioLam, SUM(MucLuong * GioLam) AS TienLuong FROM fashion.nhanvien where Ten = '" + textBox1.Text + "' GROUP BY Ten, MucLuong, GioLam;", con);
+            cmd = new MySqlCommand("SELECT Ten, MucLuong, GioLam, SUM(MucLuong * GioLam) AS TienLuong FROM fashion.nhanvien where Ten = '" + txtten.Text + "' GROUP BY Ten, MucLuong, GioLam;", con);
             adt = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adt.Fill(dt);

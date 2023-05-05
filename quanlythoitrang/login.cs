@@ -10,7 +10,7 @@ namespace quanlythoitrang
             InitializeComponent();
             
         }
-        public static string diachi = @"Data Source=LAPTOP-IJ9867A0\SQL1;Initial Catalog=qlthoitrang;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string diachi = @"Data Source=DESKTOP-2L6E1U1\MSSQLSERVER01;Initial Catalog=qlthoitrang;Integrated Security=True";
         public static SqlConnection ketnoi()
         {
             return new SqlConnection(diachi);

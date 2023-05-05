@@ -14,7 +14,7 @@ namespace quanlythoitrang
 {
     public partial class themsp : Form
     {
-        string connectionString = @"Data Source=LAPTOP-IJ9867A0\SQL1;Initial Catalog=qlthoitrang;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connectionString = @"Data Source=DESKTOP-2L6E1U1\MSSQLSERVER01;Initial Catalog=qlthoitrang;Integrated Security=True";
         SqlCommand cmd;
          SqlDataAdapter adt;
         public themsp()
@@ -28,14 +28,14 @@ namespace quanlythoitrang
             try
             {
                 con.Open();
-                string sql = "INSERT INTO sanpham (masanpham, tensanpham, sz, soluong, mausac, gia)  VALUES (@masanpham, @tensanpham, @sz, @soluong,@mausac, @gia)";
+                string sql = "INSERT INTO sanpham (idsanpham, tensanpham, size, soluong, mausac, giatien)  VALUES (@idsanpham, @tensanpham, @size, @soluong,@mausac, @giatien)";
                 cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@masanpham", textBox1.Text);
+                cmd.Parameters.AddWithValue("@idsanpham", textBox1.Text);
                 cmd.Parameters.AddWithValue("@tensanpham", textBox2.Text);
-                cmd.Parameters.AddWithValue("@sz", textBox3.Text);
+                cmd.Parameters.AddWithValue("@size", textBox3.Text);
                 cmd.Parameters.AddWithValue("@soluong", textBox4.Text);
                 cmd.Parameters.AddWithValue("@mausac", textBox5.Text);
-                cmd.Parameters.AddWithValue("@gia", textBox6.Text);
+                cmd.Parameters.AddWithValue("@giatien", textBox6.Text);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {

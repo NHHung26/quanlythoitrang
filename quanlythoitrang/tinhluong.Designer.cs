@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button2 = new Button();
+            btntinhluong = new Button();
             dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
+            txtten = new TextBox();
             label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // button2
+            // btntinhluong
             // 
-            button2.Location = new Point(668, 64);
-            button2.Name = "button2";
-            button2.Size = new Size(100, 32);
-            button2.TabIndex = 11;
-            button2.Text = "Tính lương";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
+            btntinhluong.Location = new Point(668, 64);
+            btntinhluong.Name = "btntinhluong";
+            btntinhluong.Size = new Size(100, 32);
+            btntinhluong.TabIndex = 11;
+            btntinhluong.Text = "Tính lương";
+            btntinhluong.UseVisualStyleBackColor = true;
+            btntinhluong.Click += button2_Click_1;
             // 
             // dataGridView1
             // 
@@ -56,13 +56,13 @@
             dataGridView1.Size = new Size(707, 100);
             dataGridView1.TabIndex = 10;
             // 
-            // textBox1
+            // txtten
             // 
-            textBox1.Location = new Point(212, 62);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(450, 34);
-            textBox1.TabIndex = 8;
+            txtten.Location = new Point(212, 62);
+            txtten.Multiline = true;
+            txtten.Name = "txtten";
+            txtten.Size = new Size(450, 34);
+            txtten.TabIndex = 8;
             // 
             // label2
             // 
@@ -79,9 +79,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 279);
-            Controls.Add(button2);
+            Controls.Add(btntinhluong);
             Controls.Add(dataGridView1);
-            Controls.Add(textBox1);
+            Controls.Add(txtten);
             Controls.Add(label2);
             Name = "tinhluong";
             Text = "Form1";
@@ -92,9 +92,9 @@
 
         #endregion
 
-        private Button button2;
+        private Button btntinhluong;
         private DataGridView dataGridView1;
-        private TextBox textBox1;
+        private TextBox txtten;
         private Label label2;
     }
 }
